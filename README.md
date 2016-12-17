@@ -2,7 +2,7 @@
 Enterprise-Connect Client Java Library
 
 ##Usage
-* Maven dependency
+* Maven dependency.
 ```xml
 <dependency>
     <groupId>com.ge.ec</groupId>
