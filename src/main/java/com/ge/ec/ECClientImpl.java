@@ -12,15 +12,22 @@
  */
 package com.ge.ec;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 //import java.io.InputStream;
 //import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.lang.SystemUtils;
 
 public class ECClientImpl implements ECClient {
-
+    
+    public ECClientImpl(){
+    }
+    
     /**
      *
      * @return @throws IOException
@@ -28,14 +35,22 @@ public class ECClientImpl implements ECClient {
     @Override
     public boolean Start() throws IOException {
 
-        Process iostat = new ProcessBuilder().command("./ecclient_darwin -file client_settings.json").inheritIO().start();
+        String _ec_art="";
+        if (SystemUtils.IS_OS_LINUX){
+            _ec_art="ecclient_linux";
+        } else if (SystemUtils.IS_OS_WINDOWS){
+            _ec_art="ecccleint_windows";
+        } else if (SystemUtils.IS_OS_MAC){
+            _ec_art="ecclient_darwin";
+        }
+                
+        Process iostat = new ProcessBuilder().command("./"+_ec_art,"-file","client_settings.json","&").inheritIO().start();
         int exitCode;
         try {
             exitCode = iostat.waitFor();
             System.out.println("exitCode = " + exitCode);
-
         } catch (InterruptedException ex) {
-            Logger.getLogger(ECClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ECClientImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
