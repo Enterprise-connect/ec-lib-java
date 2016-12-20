@@ -20,10 +20,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ECClientImplTest {
+public class ECServerImplTest {
     
-    private final ECClientImpl instance = new ECClientImpl();
-    public ECClientImplTest() {
+    private final ECServerImpl instance = new ECServerImpl();
+    public ECServerImplTest() {
     }
     
     @BeforeClass

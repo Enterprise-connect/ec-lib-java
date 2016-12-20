@@ -21,14 +21,14 @@ import java.util.logging.Logger;
 import org.apache.commons.lang.SystemUtils;
 import org.json.simple.JSONObject;
 
-public class ECClientImpl implements ECClient {
+public class ECServerImpl implements ECServer {
     
     //private static Thread _thd;
     private static Process _process;
     private final String VER = "v1";
     private static final JSONObject _settings=new JSONObject();;
     
-    public ECClientImpl(){
+    public ECServerImpl(){
     }
     
     private class ThreadProvisioner implements Runnable {
@@ -74,11 +74,11 @@ public class ECClientImpl implements ECClient {
 
         String _ec_art="";
         if (SystemUtils.IS_OS_LINUX){
-            _ec_art="ecclient_linux";
+            _ec_art="ecserver_linux";
         } else if (SystemUtils.IS_OS_WINDOWS){
-            _ec_art="ecccleint_windows.exe";
+            _ec_art="ecserver_windows.exe";
         } else if (SystemUtils.IS_OS_MAC){
-            _ec_art="ecclient_darwin";
+            _ec_art="ecserver_darwin";
         }
         
         if (_process!=null&&_process.isAlive())

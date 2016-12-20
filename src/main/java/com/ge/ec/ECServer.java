@@ -15,7 +15,7 @@ package com.ge.ec;
 
 import java.io.IOException;
 
-public interface ECClient {
+public interface ECServer {
     
     public boolean launch() throws IOException;
     
